@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-int wurf[6];
-int becher[5];
+int samples[5];
 
 void linex2(int l, char c) {
 	for (int i = 0; i < l; i++) {
@@ -49,7 +48,7 @@ void sanduhr(int b, char c) {
 			}
 			printf("\n");
 		}
-		//uterer Teil gerade
+		//unterer Teil gerade
 		for (int i = m; i <= (b - 1); i = i + 2) {
 
 			for (int j = ((b - i) / 2); j > 0; j = j - 1) {
@@ -181,38 +180,28 @@ void becherWurf(int* samples) {
 }
 
 bool viererPasch(int* samples) {
-	//int wurf[6]; // wegen Speicherverbrauch
-	int bambus = 0;
-	for (int i = 0; i < 5; i++) { // resetting wurf[]
-		wurf[samples[i] - 1] = 0;
-	}
-	for (int i = 0; i < 5; i++) {
-		wurf[samples[i] - 1]= wurf[samples[i] - 1]+1;
-	}
-
-	printf("\nWurf Array print:"); //debug print
-	for (int i = 0; i < 5; i++) {
-		printf(" %d", wurf[i]);
-	}
-
-	for (int i = 0;i<(6-1); i++) {
-		if (wurf[i] >= 4) {
-			bambus++;
-		}
-	}
-	if (bambus > 0) {
+	
+	if (samples[0] == samples[1] && samples[1] == samples[2] && samples[2] == samples[3] ||
+		samples[1] == samples[2] && samples[2] == samples[3] && samples[3] == samples[4] ||
+		samples[0] == samples[2] && samples[2] == samples[3] && samples[3] == samples[4] ||
+		samples[0] == samples[1] && samples[1] == samples[3] && samples[3] == samples[4] ||
+		samples[0] == samples[1] && samples[1] == samples[2] && samples[2] == samples[4]) {
 		return true;
 	}
-	else return false;
+	else {
+		return false;
+	}	
 }
 
 void wuerfe(void) {
-	bool count = 0;
-	for (bool baum = 0; baum == 0;count++) {
-		becherWurf(becher);
-		baum = viererPasch(becher);
+	int count = 1;
+	becherWurf(samples);
+	while(!viererPasch(samples)) {
+		becherWurf(samples);
+		count++;
 	}
-	printf("to get four Identicals it took %d trys\n", count);
+	printf("to get four Identicals it took %d trys! \n", count);
+	//printf("The winning Numbers were %i; %i; %i; %i; %i\n", samples[0], samples[1], samples[2], samples[3], samples[4]); //for debugging
 }
 
 void aufgabe6(void) {
