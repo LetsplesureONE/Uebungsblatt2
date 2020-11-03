@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+
+int wurf[6];
+int becher[5];
 
 void linex2(int l, char c) {
 	for (int i = 0; i < l; i++) {
@@ -163,16 +167,69 @@ void aufgabe5(void){
 int dx(int d) {
 	return rand() % d + 1;
 }
+
 void becherWurf(int* samples) {
 	for (int i = 0; i < 5; i++) {
 		samples[i]=dx(6);
 	}
+	/*//debug array print
+	printf("Array print:");
+	for (int i = 0; i < 5; i++) {
+		printf(" %d",samples[i]);
+	}
+	*/
+}
+
+bool viererPasch(int* samples) {
+	//int wurf[6]; // wegen Speicherverbrauch
+	int bambus = 0;
+	for (int i = 0; i < 5; i++) { // resetting wurf[]
+		wurf[samples[i] - 1] = 0;
+	}
+	for (int i = 0; i < 5; i++) {
+		wurf[samples[i] - 1]= wurf[samples[i] - 1]+1;
+	}
+
+	printf("\nWurf Array print:"); //debug print
+	for (int i = 0; i < 5; i++) {
+		printf(" %d", wurf[i]);
+	}
+
+	for (int i = 0;i<(6-1); i++) {
+		if (wurf[i] >= 4) {
+			bambus++;
+		}
+	}
+	if (bambus > 0) {
+		return true;
+	}
+	else return false;
+}
+
+void wuerfe(void) {
+	bool count = 0;
+	for (bool baum = 0; baum == 0;count++) {
+		becherWurf(becher);
+		baum = viererPasch(becher);
+	}
+	printf("to get four Identicals it took %d trys\n", count);
 }
 
 void aufgabe6(void) {
-	for (int i = 0; i < 100; i++) {
+	srand(7);
+	
+	wuerfe();
+	wuerfe();
+	wuerfe();
+	wuerfe();
+	wuerfe();
+	wuerfe();
+	wuerfe();
+	wuerfe();
+	//becherWurf(becher);
+	/*for (int i = 0; i < 100; i++) {
 		printf("%d",dx(6));
-	}
+	}*/
 }
 
 int main(void) {
