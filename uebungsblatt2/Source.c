@@ -36,43 +36,43 @@ void aufgabe1(void) {
 
 void sanduhr(int b, char c) {
 	int m = 0;
-	if (b % 2 == 0) {
+	if (b % 2 == 0) { //test ob Anzahl gerade
 		//oberer Teil gerade
-		for (int i = b; i > 0; i = i - 2) {
-			for (int j = ((b - i) / 2); j > 0; j = j - 1) {
+		for (int i = b; i > 0; i = i - 2) { 
+			for (int j = ((b - i) / 2); j > 0; j = j - 1) { //Vorleerzeichen printen
 				printf(" ");
 			}
-			for (int k = i; k > 0; k = k - 1) {
+			for (int k = i; k > 0; k = k - 1) { //Dreiecksfunktion 
 				printf("%c", c);
-				m = k + 1;
+				m = k + 1; //m zur Übergabe als Arbeitsvariable
 			}
 			printf("\n");
 		}
 		//unterer Teil gerade
-		for (int i = m; i <= (b - 1); i = i + 2) {
+		for (int i = m; i <= (b - 1); i = i + 2) { // Wiederaufbau von 2 auf b
 
 			for (int j = ((b - i) / 2); j > 0; j = j - 1) {
-				printf(" ");
+				printf(" "); //Vorleerzeichen drucken
 			}
-			printf("%c", c);
+			printf("%c", c); //randchar drucken
 			for (int k = i - 1; k > 1; k = k - 1) {
-				printf(" ");
+				printf(" "); //mittelleerzeichen drucken
 			}
-			printf("%c\n", c);
+			printf("%c\n", c); //randchar drucken
 		}
-		for (int i = b; i > 0; i--) {
+		for (int i = b; i > 0; i--) { //Letzte Zeile durcken
 			printf("%c", c);
 		}
-		printf("\n");
+		printf("\n");// Zeilenumbruch
 	}
-	else {
+	else { // wenn ungerade Anzahl 
 		//oberer Teil ungerade
-		for (int i = b; i > 0; i = i - 2) {
-			for (int j = ((b - i) / 2); j > 0; j = j - 1) {
-				printf(" ");
+		for (int i = b; i > 0; i = i - 2) { 
+			for (int j = ((b - i) / 2); j > 0; j = j - 1) { 
+				printf(" "); //Vorleerzeiten printen
 			}
 			for (int k = i; k > 0; k = k - 1) {
-				printf("%c", c);
+				printf("%c", c); //chars printen
 				m = k + 1;
 			}
 			printf("\n");
@@ -80,17 +80,17 @@ void sanduhr(int b, char c) {
 		//unterer Teil ungerade
 		for (int i = m+1; i <= (b-1); i = i + 2) {
 
-			for (int j = ((b - i) / 2); j > 0; j = j - 1) {
+			for (int j = ((b - i) / 2); j > 0; j = j - 1) { //Vorleerzeichen printen
 				printf(" ");
 			}
-			printf("%c", c);
-			for (int k = i - 1; k > 1; k = k - 1) {
+			printf("%c", c); //Vorchar printen
+			for (int k = i - 1; k > 1; k = k - 1) { //mittlere Leerzeichen printen
 				printf(" ");
 			}
-			printf("%c\n", c);
+			printf("%c\n", c); //Nachchar und Spaltenumbruch printen
 		}
 		for (int i = b; i > 0; i--) {
-			printf("%c", c);
+			printf("%c", c); //letzte Zeile printen
 		}
 		printf("\n");
 	}
@@ -223,10 +223,10 @@ void aufgabe6(void) {
 
 int main(void) {
 	//aufgabe1();
-	//aufgabe2();
+	aufgabe2();
 	//aufgabe3();
 	//aufgabe4();
 	//aufgabe5();
-	aufgabe6();
+	//aufgabe6();
 	return 0;
 }
